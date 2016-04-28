@@ -273,7 +273,9 @@ static
 void
 semP(struct usem *sem, size_t num)
 {
-	if (read(sem->fd, NULL, num) < 0) {
+	char buffer[30];
+	memset(buffer, 0, 30);
+	if (read(sem->fd, buffer, num) < 0) {
 		err(1, "%s: read", sem->name);
 	}
 }
@@ -282,7 +284,9 @@ static
 void
 semV(struct usem *sem, size_t num)
 {
-	if (write(sem->fd, NULL, num) < 0) {
+	char buffer[30];
+	memset(buffer, 0, 30);
+	if (write(sem->fd, buffer, num) < 0) {
 		err(1, "%s: write", sem->name);
 	}
 }
